@@ -8,7 +8,7 @@ const { Users } = require('../../models');
 // - GET: If click sign up user is prompted to create a username and password
 // - GET: Log in after sign-up - If click on the sign-up button user credentials are saved and are logged into the site
 // - POST: username and password are saved
-router.post('/', async (req, res) => {
+router.post('/signup', async (req, res) => {
   try {
     const userData = await Users.create(req.body);
 

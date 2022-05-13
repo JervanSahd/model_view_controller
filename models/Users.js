@@ -8,7 +8,7 @@ class Users extends Model {
   }
 }
 
-User.init(
+Users.init(
   {
     id: {
       type: DataTypes.INTEGER,
