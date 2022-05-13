@@ -109,9 +109,9 @@ It also uses the [dotenv package](https://www.npmjs.com/package/dotenv) to use e
 - GET: DASHBOARD ADD POST FEATURE
 ```
 
-## DASHBOARD ONE POST FEATURE
-
 ```md
+### DASHBOARD ONE POST FEATURE
+
 - POST: The button to add a new blog post prompts user to enter both a title and contents for user blog post
 - GET: taken back to an updated blog post dashboard with user new blog post
 - GET: POST COMMENT FEATURE
@@ -132,9 +132,12 @@ It also uses the [dotenv package](https://www.npmjs.com/package/dotenv) to use e
 - GET: Taken back to an updated dashboard with user edited blog post
 ```
 
-### POST COMMENT FEATURE: USER LOGGED IN
+---
+
+## POST COMMENT FEATURE:
 
 ```md
+- User is logged in
 - POST: User can enter a post comment, creator username, and date created and click on the submit button
 - GET: the post is updated to display the comment, the comment creator’s username, and the date created
 ```
