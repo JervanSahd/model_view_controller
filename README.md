@@ -6,10 +6,10 @@ CMS-style blog site allowing developers to publish articles, blog posts, thought
 
 A CMS-style blog site similar to a Wordpress site, where developers can publish their blog posts and comment on other developers’ posts as well. Deploy to Heroku, this app follows the MVC paradigm in its architectural structure, using Handlebars.js as the templating language, Sequelize as the ORM, and the express-session npm package for authentication.
 
-## Acceptance Criteria
+## Criteria
 
 ```md
-- WHEN I visit the site for the first time THEN I am presented with the homepage, which includes existing blog posts if any have been posted; navigation links for the homepage and the dashboard; and the option to log in
+- When visit the site for the first time the user is presented with the homepage, which includes existing blog posts if any have been posted; navigation links for the homepage and the dashboard; and the option to log in
 
 - Homepage link takes user to the homepage
 
@@ -51,5 +51,77 @@ It also uses the [dotenv package](https://www.npmjs.com/package/dotenv) to use e
 **Note**: The [express-session](https://www.npmjs.com/package/express-session) package stores the session data on the client in a cookie. When user is idle on the site for more than a set time, the cookie will expire and they will be required to log in again to start a new session.
 
 ---
+#   STRUCTURE
+---
+##   HOME PAGE FEATURE: 
+```md
+*   USER LOGGED IN OR NOT LOGGED IN
+*   NAV:  HOME / DASHBOARD / SIGN UP / LOGIN (if user is logged out) || LOGOUT (if user is logged in)
+*   GET: ALL BLOGPOST - includes existing blog posts if any have been posted, post title and date created 
+*   GET:    When visit the site for the first time the user is presented with the homepage,
+*   AUTHENTICATE USER/GET: Any other links in the navigation prompts user to either sign up or sign in
+```
+### HOME ONE POST FEATURE 
+```md
+*   For users not logged in
+*   GET: Choosen blog post homepage
+```
+###  SIGNUP FEATURE: 
+```md
+*   For users not logged in
+*   GET: If click sign up user is prompted to create a username and password
+*   GET:  Log in after sign-up - If click on the sign-up button user credentials are saved and are logged into the site
+*   POST: credentials are saved
+```
+### LOGIN FEATURE: 
+```md
+*   For users not logged in
+*   GET: When user revisits the site at a later time and choose to sign in they are prompted to enter my username and password
+*   SESSION TIME OUT:  When user is idle on the site for more than a set time they are able to view comments but are prompted to log in again before they can add, update, or delete comments
+```
+###  LOGOUT FEATURE:
+```md
+*   For users logged in
+*   SESSION END: The logout option in the navigation signs out of the site
+```
+---
+##  DASHBOARD FEATURE: 
+```md
+*   USER LOGGED IN
+*   GET: (user blog posts, add new blog posts, )
+*   GET: all -  presented with all blog posts already created
+*   GET: one - choose a blog posts already created
+*   GET: DASHBOARD ADD POST FEATURE 
+```
+## DASHBOARD ONE POST FEATURE 
+```md
+*   POST:  The button to add a new blog post prompts user to enter both a title and contents for user blog post
+*   GET:   taken back to an updated blog post dashboard with user new blog post
+*   GET:   POST COMMENT FEATURE
+
+### DASHBOARD ADD POST FEATURE 
+
+*   POST:  The button to add a new blog post prompts user to enter both a title and contents for user blog post
+*   GET:   taken back to an updated dashboard with user new blog post
+
+### DASHBOARD DELETE POST FEATURE 
+
+*   DELETE:  The button to delete blog post prompts 
+*   GET:   Taken back to an updated dashboard with deleted blog post
+
+### DASHBOARD EDIT POST FEATURE 
+
+*   PUT:  The button to edit a blog post 
+*   GET:  Taken back to an updated dashboard with user edited blog post
+```
+
+###  POST COMMENT FEATURE: USER LOGGED IN
+```md
+*   POST: User can enter a post comment, creator username, and date created and click on the submit button 
+*   GET: the post is updated to display the comment, the comment creator’s username, and the date created
+```
+---
+
+
 
 Steve Snavely
