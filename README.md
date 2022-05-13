@@ -72,27 +72,20 @@ It also uses the [dotenv package](https://www.npmjs.com/package/dotenv) to use e
 - For users not logged in
 - GET: Choosen blog post homepage
 ```
-
-### SIGNUP FEATURE:
-
 ```md
+### SIGNUP FEATURE:
 - For users not logged in
 - GET: If click sign up user is prompted to create a username and password
 - GET: Log in after sign-up - If click on the sign-up button user credentials are saved and are logged into the site
 - POST: credentials are saved
-```
+
 
 ### LOGIN FEATURE:
-
-```md
 - For users not logged in
 - GET: When user revisits the site at a later time and choose to sign in they are prompted to enter my username and password
 - SESSION TIME OUT: When user is idle on the site for more than a set time they are able to view comments but are prompted to log in again before they can add, update, or delete comments
-```
 
 ### LOGOUT FEATURE:
-
-```md
 - For users logged in
 - SESSION END: The logout option in the navigation signs out of the site
 ```
@@ -105,8 +98,10 @@ It also uses the [dotenv package](https://www.npmjs.com/package/dotenv) to use e
 - USER LOGGED IN
 - GET: (user blog posts, add new blog posts, )
 - GET: all - presented with all blog posts already created
-- GET: one - choose a blog posts already created
+- GET: DASHBOARD ONE POST FEATURE
 - GET: DASHBOARD ADD POST FEATURE
+- GET: DASHBOARD DELETE POST FEATURE
+- GET: DASHBOARD EDIT POST FEATURE
 ```
 
 ```md
