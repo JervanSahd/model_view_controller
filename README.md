@@ -1,156 +1,94 @@
-# Tech Blog : Model-View-Controller (MVC)
+# Unit 14 Mini-Project: Crowdfunding App
 
-CMS-style blog site allowing developers to publish articles, blog posts, thoughts and opinions.
+In this mini-project, you will work with a group to build a full-stack crowdfunding app using Node.js, Express.js, Sequelize, Handlebars.js, and MVC architecture.
 
-## Description
+## User Stories
 
-A CMS-style blog site similar to a Wordpress site, where developers can publish their blog posts and comment on other developers’ posts as well. Deploy to Heroku, this app follows the MVC paradigm in its architectural structure, using Handlebars.js as the templating language, Sequelize as the ORM, and the express-session npm package for authentication.
+* As a user, I want to see a list of current projects seeking funding.
 
-## Criteria
+* As a user, I want to be able to create an account.
 
-```md
-- When visit the site for the first time the user is presented with the homepage, which includes existing blog posts if any have been posted; navigation links for the homepage and the dashboard; and the option to log in
+* As a registered user, I want to post my own projects to ask for funding.
 
-- Homepage link takes user to the homepage
+### Acceptance Criteria
 
-- Any other links in the navigation prompts user to either sign up or sign in
+* It's done when the `/` homepage route renders a list of all projects from the database.
 
-- If click sign up user is prompted to create a username and password
+* It's done when the `/project/:id` route renders an individual project's details based on the route parameter id.
 
-- If click on the sign-up button user credentials are saved and are logged into the site
+* It's done when the `/login` route renders a form to log in and a form to create a new account.
 
-- When user revisits the site at a later time and choose to sign in they are prompted to enter my username and password
+* It's done when an existing user can enter their credentials on the login page to create a session on the server.
 
-- Navigation links for the homepage, the dashboard, and the option to log out visible for signed in users.
+* It's done when a new user can create an account on the login page and then be immediately logged in with a session.
 
-- Homepage link in the navigation takes user to the homepage and are presented with existing blog posts that include the post title and the date created
+* It's done when the `/profile` route renders the logged-in user's projects and a form to create a new project.
 
-- Existing blog post link presents user with the post title, contents, post creator’s username, and date created for that post and have the option to leave a comment
+* It's done when only a logged in user can visit the `/profile` route.
 
-- User can enter a comment and click on the submit button while signed in and the comment is saved and the post is updated to display the comment, the comment creator’s username, and the date created
+* It's done when a logged in user is redirected to `/profile` when they try to visit `/login` again.
 
-- The dashboard option in the navigation takes user to the dashboard and presented with any blog posts already created and the option to add a new blog post
+* It's done when a user on the profile page can use the form to create a new project in the database.
 
-- The button to add a new blog post prompts user to enter both a title and contents for my blog post
+* It's done when a user on the profile page can select a "Delete" button to remove their project from the database.
 
-- The button to create a new blog post saves the title and contents of user post and taken back to an updated dashboard with user new blog post
+* It's done when a logged-in user can select a "Logout" button to remove their session.
 
-- User are able to delete or update their existing posts in the dashboard and are taken back to an updated dashboard
+* It's done when the API routes to create and delete posts are protected from non logged-in users.
 
-- The logout option in the navigation signs out of the site
+* It's done when the code is organized using MVC architecture.
 
-- When user is idle on the site for more than a set time they are able to view comments but are prompted to log in again before they can add, update, or delete comments
-```
+* It's done when the views are rendered with Handlebars.js templates.
 
-## Technologies
+## Specifications 
 
-This application’s folder structure follows the Model-View-Controller paradigm and uses the [express-handlebars](https://www.npmjs.com/package/express-handlebars) package to implement Handlebars.js for Views, use the [MySQL2](https://www.npmjs.com/package/mysql2) and [Sequelize](https://www.npmjs.com/package/sequelize) packages to connect to a MySQL database for your Models, and create an Express.js API for Controllers.
+* The database models have the following fields and associations:
 
-It also uses the [dotenv package](https://www.npmjs.com/package/dotenv) to use environment variables, the [bcrypt package](https://www.npmjs.com/package/bcrypt) to hash passwords, and the [express-session](https://www.npmjs.com/package/express-session) and [connect-session-sequelize](https://www.npmjs.com/package/connect-session-sequelize) packages to add authentication.
+  * `User`
 
-**Note**: The [express-session](https://www.npmjs.com/package/express-session) package stores the session data on the client in a cookie. When user is idle on the site for more than a set time, the cookie will expire and they will be required to log in again to start a new session.
+    * `id`: primary key
 
----
+    * `name`
 
-# STRUCTURE
----
+    * `email`
 
-##  Components
-```md
--   User
-    *   Model - id, userName, password
--   Comment
-    *   Model - id, comment, date_create, user_id
--   Post
-    *   Model - id ,title, post, date_create, user_id
-```
+    * `password`
 
----
+  * `Project`
 
-## HOME PAGE FEATURE:
+    * `id`: primary key
 
-```md
-- USER LOGGED IN OR NOT LOGGED IN
-- NAV: HOME / DASHBOARD / SIGN UP / LOGIN (if user is logged out) || LOGOUT (if user is logged in)
-- GET: ALL BLOGPOST - includes existing blog posts if any have been posted, post title and date created
-- GET: When visit the site for the first time the user is presented with the homepage,
-- AUTHENTICATE USER/GET: Any other links in the navigation prompts user to either sign up or sign in
-- INCLUDES:
-  - HOME ONE POST FEATURE
-  - SIGNUP FEATURE
-  - LOGIN FEATURE
-  - LOGOUT FEATURE
-```
+    * `name`
 
-```md
-### HOME ONE POST FEATURE
+    * `description`
 
-- For users not logged in
-- GET: Choosen blog post homepage
+    * `date_created`
 
-### SIGNUP FEATURE:
+    * `needed_funding`
 
-- For users not logged in
-- GET: If click sign up user is prompted to create a username and password
-- GET: Log in after sign-up - If click on the sign-up button user credentials are saved and are logged into the site
-- POST: username and password are saved
+    * `user_id`: foreign key that references `User.id`
 
-### LOGIN FEATURE:
+  * Users have many projects, and projects belong to a user.
 
-- For users not logged in
-- GET: When user revisits the site at a later time and choose to sign in they are prompted to enter my username and password
-- POST- SESSION TIME OUT: When user is idle on the site for more than a set time they are able to view comments but are prompted to log in again before they can add, update, or delete comments
-
-### LOGOUT FEATURE:
-
-- For users logged in
-- POST - SESSION END: The logout option in the navigation signs out of the site
-```
+    * If a user is deleted, all associated projects are also deleted.
 
 ---
 
-### DASHBOARD FEATURE:
+## 💡 Hints
 
-```md
-- USER LOGGED IN
-- GET: all - presented with all blog posts already created
-- INCLUDES
-  - DASHBOARD ONE POST FEATURE
-  - DASHBOARD ADD POST FEATURE
-  - DASHBOARD DELETE POST FEATURE
-  - DASHBOARD EDIT POST FEATURE
-```
+* What tools can you use to test the existing API routes if you don't yet have a front end?
 
-```md
-### DASHBOARD ONE POST FEATURE
+* Where would you place the client-side JavaScript for capturing form data?
 
-- GET: taken back to an updated blog post dashboard with user new blog post
-- GET: POST COMMENT FEATURE
+* How can middleware help protect routes from non logged-in users?
 
-### DASHBOARD ADD POST FEATURE
+* How can Handlebars.js helpers (both built-in and custom) be used to render the desired results?
 
-- POST: The button to add a new blog post prompts user to enter both a title and contents for user blog post
-- GET: taken back to an updated dashboard with user new blog post
+## 🏆 Bonus
 
-### DASHBOARD DELETE POST FEATURE
+If you have completed this activity, work through the following challenge with your partner to further your knowledge:
 
-- DELETE: The button to delete blog post prompts
-- GET: Taken back to an updated dashboard with deleted blog post
-
-### DASHBOARD EDIT POST FEATURE
-
-- PUT: The button to edit a blog post
-- GET: Taken back to an updated dashboard with user edited blog post
-```
----
-## POST COMMENT FEATURE:
-
-```md
-- User is logged in
-- POST: User can enter a post comment, creator username, and date created and click on the submit button
-- GET: the post is updated to display the comment, the comment creator’s username, and the date created
-```
+* Add an `/edit/:id` route for logged in users to update their projects' details. Then deploy the app to Heroku!
 
 ---
-
-Steve Snavely
+© 2021 Trilogy Education Services, LLC, a 2U, Inc. brand. Confidential and Proprietary. All Rights Reserved.
