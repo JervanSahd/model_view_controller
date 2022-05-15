@@ -1,94 +1,65 @@
-# Unit 14 Mini-Project: Crowdfunding App
+# Tech Blog - Model-View-Controller (MVC):
 
-In this mini-project, you will work with a group to build a full-stack crowdfunding app using Node.js, Express.js, Sequelize, Handlebars.js, and MVC architecture.
+A CMS-style blog site for developers who writes about tech through published articles, blog posts, and thoughts and opinions
 
-## User Stories
+## Your Task
 
-* As a user, I want to see a list of current projects seeking funding.
+Developers spend plenty of time creating new applications and debugging existing codebases, but most developers also spend at least some of their time reading and writing about technical concepts, recent advancements, and new technologies. A simple Google search for any concept covered in this course returns thousands of think pieces and tutorials from developers of all skill levels!
 
-* As a user, I want to be able to create an account.
+This CMS-style blog site similar to a Wordpress site, is where developers can publish their blog posts and comment on other developers’ posts as well. Deploy to Heroku this app follows the MVC paradigm in its architectural structure, using Handlebars.js as the templating language, Sequelize as the ORM, and the express-session npm package for authentication.
 
-* As a registered user, I want to post my own projects to ask for funding.
+## CMS-style blog site Criteria
 
-### Acceptance Criteria
+```md
+- User visits the site for the first time they are presented with the homepage, which includes existing blog posts if any have been posted; navigation links for the homepage and the dashboard; and the option to log in
 
-* It's done when the `/` homepage route renders a list of all projects from the database.
+- Click on the homepage option user is taken to the homepage
 
-* It's done when the `/project/:id` route renders an individual project's details based on the route parameter id.
+- Click on any other links in the navigation user is prompted to either sign up or sign in
 
-* It's done when the `/login` route renders a form to log in and a form to create a new account.
+- Choose to sign up user is prompted to create a username and password
 
-* It's done when an existing user can enter their credentials on the login page to create a session on the server.
+- Click on the sign-up button user credentials are saved and user is logged into the site
 
-* It's done when a new user can create an account on the login page and then be immediately logged in with a session.
+- Revisit the site at a later time and choose to sign in user is prompted to enter user's username and password
 
-* It's done when the `/profile` route renders the logged-in user's projects and a form to create a new project.
+- Signed in to the site the navigation links for the homepage, the dashboard, and the option to log out are visible
 
-* It's done when only a logged in user can visit the `/profile` route.
+- Click on the homepage option in the navigation user is taken to the homepage and presented with existing blog posts that include the post title and the date created
 
-* It's done when a logged in user is redirected to `/profile` when they try to visit `/login` again.
+- Click on an existing blog post user is presented with the post title, contents, post creator’s username, and date created for that post and have the option to leave a comment
 
-* It's done when a user on the profile page can use the form to create a new project in the database.
+- Enter a comment and click on the submit button while signed in the comment is saved and the post is updated to display the comment, the comment creator’s username, and the date created
 
-* It's done when a user on the profile page can select a "Delete" button to remove their project from the database.
+- Click on the dashboard option in the navigation user is taken to the dashboard and presented with any blog posts user has already created and the option to add a new blog post
 
-* It's done when a logged-in user can select a "Logout" button to remove their session.
+- Click on the button to add a new blog post and prompted to enter both a title and contents for blog post
 
-* It's done when the API routes to create and delete posts are protected from non logged-in users.
+- Click on the button to create a new blog post the title and contents of user post are saved and are taken back to an updated dashboard with new blog post
 
-* It's done when the code is organized using MVC architecture.
+- Click on one of users existing posts in the dashboard ability to delete or update my post and taken back to an updated dashboard
 
-* It's done when the views are rendered with Handlebars.js templates.
+- Click on the logout option in the navigation signs user out of the site
 
-## Specifications 
+- Idle on the site for more than a set time veiwable comments but prompted to log in again before add, update, or delete comments
+```
 
-* The database models have the following fields and associations:
+## Technology Structure
 
-  * `User`
+```md
+- Folder structure follow the Model-View-Controller paradigm.
 
-    * `id`: primary key
+- [express-handlebars](https://www.npmjs.com/package/express-handlebars) package to implement Handlebars.js for Views
 
-    * `name`
+- [MySQL2](https://www.npmjs.com/package/mysql2) and [Sequelize](https://www.npmjs.com/package/sequelize) packages to connect to a MySQL database for Models
 
-    * `email`
+- An Express.js API for your Controllers.
 
-    * `password`
+- [dotenv package](https://www.npmjs.com/package/dotenv) to use environment variables
 
-  * `Project`
+- [bcrypt package](https://www.npmjs.com/package/bcrypt) to hash passwords
 
-    * `id`: primary key
+- [express-session](https://www.npmjs.com/package/express-session) and [connect-session-sequelize](https://www.npmjs.com/package/connect-session-sequelize) packages to add authentication.
 
-    * `name`
-
-    * `description`
-
-    * `date_created`
-
-    * `needed_funding`
-
-    * `user_id`: foreign key that references `User.id`
-
-  * Users have many projects, and projects belong to a user.
-
-    * If a user is deleted, all associated projects are also deleted.
-
----
-
-## 💡 Hints
-
-* What tools can you use to test the existing API routes if you don't yet have a front end?
-
-* Where would you place the client-side JavaScript for capturing form data?
-
-* How can middleware help protect routes from non logged-in users?
-
-* How can Handlebars.js helpers (both built-in and custom) be used to render the desired results?
-
-## 🏆 Bonus
-
-If you have completed this activity, work through the following challenge with your partner to further your knowledge:
-
-* Add an `/edit/:id` route for logged in users to update their projects' details. Then deploy the app to Heroku!
-
----
-© 2021 Trilogy Education Services, LLC, a 2U, Inc. brand. Confidential and Proprietary. All Rights Reserved.
+The [express-session](https://www.npmjs.com/package/express-session) package stores the session data on the client in a cookie. When you are idle on the site for more than a set time, the cookie will expire and you will be required to log in again to start a new session.
+```
