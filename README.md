@@ -1,8 +1,8 @@
-# Tech Blog - Model-View-Controller (MVC):
+# heroku login (MVC):
 
 A CMS-style blog site for developers who writes about tech through published articles, blog posts, and thoughts and opinions
 
-## Your Task
+## Description
 
 Developers spend plenty of time creating new applications and debugging existing codebases, but most developers also spend at least some of their time reading and writing about technical concepts, recent advancements, and new technologies. A simple Google search for any concept covered in this course returns thousands of think pieces and tutorials from developers of all skill levels!
 
@@ -63,3 +63,11 @@ This CMS-style blog site similar to a Wordpress site, is where developers can pu
 
 The [express-session](https://www.npmjs.com/package/express-session) package stores the session data on the client in a cookie. When you are idle on the site for more than a set time, the cookie will expire and you will be required to log in again to start a new session.
 ```
+
+## Sources
+
+Heroku app address:
+https://tech-blog-gt.herokuapp.com/
+
+Github Repository
+https://github.com/JervanSahd/model_view_controller.git
